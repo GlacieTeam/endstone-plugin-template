@@ -12,9 +12,15 @@ public:
     };
 
 public:
-    static MyPlugin& getInstance();
+    static MyPlugin& getInstance() {
+        static auto instance = new MyPlugin();
+        return *instance;
+    }
 
-    const endstone::PluginDescription& getDescription() const override;
+    const endstone::PluginDescription& getDescription() const override {
+        static auto description = PluginInfo().build(mPluginInfo.name, mPluginInfo.version);
+        return description;
+    }
 
     void onLoad() override;
 
@@ -27,3 +33,7 @@ private:
 };
 
 } // namespace my_plugin
+
+extern "C" [[maybe_unused]] ENDSTONE_EXPORT endstone::Plugin* init_endstone_plugin() {
+    return &my_plugin::MyPlugin::getInstance();
+}
