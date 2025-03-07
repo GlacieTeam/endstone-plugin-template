@@ -3,8 +3,7 @@
 namespace my_plugin {
 
 MyPlugin* MyPlugin::getInstance() {
-    static std::unique_ptr<MyPlugin> instance;
-    if (!instance) instance = std::make_unique<MyPlugin>();
+    static auto instance = std::make_unique<MyPlugin>();
     return instance.get();
 }
 
