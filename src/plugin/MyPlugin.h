@@ -12,7 +12,7 @@ public:
     };
 
 public:
-    static MyPlugin* getInstance();
+    static MyPlugin& getInstance();
 
     const endstone::PluginDescription& getDescription() const override;
 
