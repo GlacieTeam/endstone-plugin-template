@@ -8,9 +8,14 @@ MyPlugin* MyPlugin::getInstance() {
     return instance.get();
 }
 
-const endstone::PluginDescription& MyPlugin::getDescription() const { return mDescription; }
+const endstone::PluginDescription& MyPlugin::getDescription() const {
+    static auto description = PluginInfo().build(mPluginInfo.name, mPluginInfo.version);
+    return description;
+}
 
 MyPlugin::PluginInfo::PluginInfo() {
+    name        = "my_plugin";
+    version     = "11.45.14";
     prefix      = "CppExamplePlugin";
     description = "C++ Example Plugin";
     website     = "https://github.com/Owner/Repo";

@@ -6,6 +6,8 @@ namespace my_plugin {
 class MyPlugin : public endstone::Plugin {
 public:
     struct PluginInfo : public endstone::detail::PluginDescriptionBuilder {
+        std::string name;
+        std::string version;
         PluginInfo();
     };
 
@@ -21,7 +23,7 @@ public:
     void onDisable() override;
 
 private:
-    endstone::PluginDescription mDescription = PluginInfo().build("my_plugin", "11.45.14");
+    PluginInfo mPluginInfo;
 };
 
 } // namespace my_plugin
