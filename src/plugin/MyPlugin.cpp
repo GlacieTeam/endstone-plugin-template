@@ -8,11 +8,6 @@ MyPlugin* MyPlugin::getInstance() {
     return instance.get();
 }
 
-MyPlugin::PluginInfo& MyPlugin::PluginInfo::builder() {
-    static PluginInfo builder;
-    return builder;
-}
-
 const endstone::PluginDescription& MyPlugin::getDescription() const { return mDescription; }
 
 MyPlugin::PluginInfo::PluginInfo() {

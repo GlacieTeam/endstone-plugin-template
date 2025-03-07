@@ -7,7 +7,6 @@ class MyPlugin : public endstone::Plugin {
 public:
     struct PluginInfo : public endstone::detail::PluginDescriptionBuilder {
         PluginInfo();
-        static PluginInfo& builder();
     };
 
 public:
@@ -22,7 +21,7 @@ public:
     void onDisable() override;
 
 private:
-    endstone::PluginDescription mDescription = PluginInfo::builder().build("my_plugin", "11.45.14");
+    endstone::PluginDescription mDescription = PluginInfo().build("my_plugin", "11.45.14");
 };
 
 } // namespace my_plugin
