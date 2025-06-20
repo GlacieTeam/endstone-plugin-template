@@ -12,9 +12,9 @@ public:
     };
 
 public:
-    static MyPlugin& getInstance() {
+    static MyPlugin* getInstance() {
         static auto instance = new MyPlugin();
-        return *instance;
+        return instance;
     }
 
     const endstone::PluginDescription& getDescription() const override {
@@ -33,7 +33,3 @@ private:
 };
 
 } // namespace my_plugin
-
-extern "C" [[maybe_unused]] ENDSTONE_EXPORT endstone::Plugin* init_endstone_plugin() {
-    return &my_plugin::MyPlugin::getInstance();
-}

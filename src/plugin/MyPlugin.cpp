@@ -27,3 +27,7 @@ void MyPlugin::onDisable() {
 }
 
 } // namespace my_plugin
+
+extern "C" [[maybe_unused]] ENDSTONE_EXPORT endstone::Plugin* init_endstone_plugin() {
+    return my_plugin::MyPlugin::getInstance();
+}
