@@ -2,7 +2,7 @@ add_rules("mode.debug", "mode.release")
 
 add_repositories("groupmountain-repo https://github.com/GroupMountain/xmake-repo.git")
 
-add_requires("endstone 0.9.0")
+add_requires("endstone 0.9.1")
 
 if is_plat("windows") and not has_config("vs_runtime") then
     set_runtimes("MD")
