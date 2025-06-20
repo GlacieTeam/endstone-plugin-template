@@ -20,10 +20,10 @@ jobs:
       uses: xmake-io/github-action-setup-xmake@v1
         
     - name: Build Plugin (Debug)
-      run: xmake config --mode=debug && xmake --all
+      run: xmake config --mode=debug -y && xmake --all -y
       
     - name: Build Plugin (Release)
-      run: xmake config --mode=release && xmake --all
+      run: xmake config --mode=release -y && xmake --all -y
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
@@ -52,10 +52,10 @@ jobs:
       uses: xmake-io/github-action-setup-xmake@v1
         
     - name: Build Plugin (Debug)
-      run: xmake config --mode=debug --toolchain=clang && xmake --all
+      run: xmake config --mode=debug -y && xmake --all -y
       
     - name: Build Plugin (Release)
-      run: xmake config --mode=release --toolchain=clang && xmake --all
+      run: xmake config --mode=release -y && xmake --all -y
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
