@@ -45,6 +45,10 @@ target("my-plugin")
         local file = target:targetfile()
         local output_dir = path.join(os.projectdir(), "bin")
         os.mkdir(output_dir)
-        os.cp(file, path.join(output_dir, path.filename(file)))
+        local filename = path.filename(file)
+        if os.host() == "linux" then
+            filename = filename:sub(4)
+        end
+        os.cp(file, path.join(output_dir, filename))
         cprint("${bright green}[Plugin]: ${reset}plugin already generated to " .. output_dir)
     end)
