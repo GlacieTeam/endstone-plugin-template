@@ -78,12 +78,12 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
-          name: ${{ github.event.repository.name }}-windows-x86_64-${{ github.sha }}
+          name: ${{ github.event.repository.name }}-windows-x86_64
           path: artifact
 
       - uses: actions/download-artifact@v4
         with:
-          name: ${{ github.event.repository.name }}-linux-x86_64-${{ github.sha }}
+          name: ${{ github.event.repository.name }}-linux-x86_64
           path: artifact
 
       - uses: softprops/action-gh-release@v1
