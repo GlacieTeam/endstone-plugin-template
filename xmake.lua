@@ -4,11 +4,12 @@ add_repositories("groupmountain-repo https://github.com/GroupMountain/xmake-repo
 
 add_requires("endstone 0.10.4")
 
-if is_plat("windows") and not has_config("vs_runtime") then
-    set_runtimes("MD")
-end
-
-if is_plat("linux") then
+if is_plat("windows") then
+    set_toolchains("msvc")
+    if not has_config("vs_runtime") then
+        set_runtimes("MD")
+    end
+else
     set_toolchains("clang")
 end
 
