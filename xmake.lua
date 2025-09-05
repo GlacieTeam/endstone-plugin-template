@@ -15,7 +15,7 @@ end
 target("my-plugin")
     set_kind("shared")
     set_languages("cxx23")
-    set_prefixname("")
+    set_prefixname("endstone_")
     add_packages(
         "endstone"
     )
