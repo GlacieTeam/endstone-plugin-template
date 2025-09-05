@@ -2,7 +2,7 @@ add_rules("mode.debug", "mode.release")
 
 add_repositories("groupmountain-repo https://github.com/GroupMountain/xmake-repo.git")
 
-add_requires("endstone 0.9.1")
+add_requires("endstone 0.10.4")
 
 if is_plat("windows") and not has_config("vs_runtime") then
     set_runtimes("MD")
@@ -14,7 +14,8 @@ end
 
 target("my-plugin")
     set_kind("shared")
-    set_languages("c++23")
+    set_languages("cxx23")
+    set_prefixname("")
     add_packages(
         "endstone"
     )
@@ -24,21 +25,15 @@ target("my-plugin")
     if is_plat("windows") then
         add_defines("NOMINMAX")
         add_cxflags(
-            "/EHsc", 
             "/utf-8", 
             "/W4"
         )
     else
-        add_cxxflags("-Wno-gnu-line-marker")
         add_cxflags(
             "-Wall",
-            "-pedantic",
-            "-fexceptions",
             "-stdlib=libc++"
         )
-        add_ldflags(
-            "-stdlib=libc++"
-        )
+        add_syslinks("libc++.a", "libc++abi.a")
     end
 
     after_build(function(target)
@@ -46,9 +41,6 @@ target("my-plugin")
         local output_dir = path.join(os.projectdir(), "bin")
         os.mkdir(output_dir)
         local filename = path.filename(file)
-        if os.host() == "linux" then
-            filename = filename:sub(4)
-        end
         os.cp(file, path.join(output_dir, filename))
         cprint("${bright green}[Plugin]: ${reset}plugin already generated to " .. output_dir)
     end)

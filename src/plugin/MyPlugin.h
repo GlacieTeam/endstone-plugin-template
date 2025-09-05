@@ -12,6 +12,10 @@ public:
     };
 
 public:
+    MyPlugin()                = default;
+    MyPlugin(MyPlugin const&) = delete;
+    MyPlugin(MyPlugin&&)      = delete;
+
     static MyPlugin* getInstance() {
         static auto instance = new MyPlugin();
         return instance;
